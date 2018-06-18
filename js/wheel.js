@@ -21,10 +21,28 @@ addEventListener('resize', () => {
     init();
 })
 
-addEventListener('mousemove', event => {
+addEventListener('mousedown', event => {
     mouse.x = event.clientX,
     mouse.y = event.clientY
+    addEventListener('mouseemove', onMouseMove);
+    addEventListener('mouseup', onMouseUp);
 })
+
+const onMouseMove = (event) => {
+    mouse.x = event.clientX,
+    mouse.y = event.clientY
+}
+
+const onMouseUp = (event) => {
+    removeEventListener('mousemove', onMouseMove);
+    removeEventListener('mouseup', onMouseUp);
+}
+
+// addEventListener('mousemove', event => {
+//     mouse.x = event.clientX,
+//     mouse.y = event.clientY
+// })
+
 
 //create circle object
 class Particle{
@@ -105,7 +123,7 @@ const animate = () => {
     c.fillStyle = 'rgba(255, 255, 255, 0.05)';
     c.fillRect(0,0,canvas.width, canvas.height);
     
-    c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y)
+    c.fillText('', mouse.x, mouse.y)
     particles.forEach(particle => {
      particle.update();
     });
