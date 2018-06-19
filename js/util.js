@@ -29,3 +29,13 @@ export const mouseangle = (mousePos, playerPos) => {
     return alpha;
     // if(alpha )
 }
+
+export const checkCollision = (movingObj1, movingObj2) => {
+    const totalRadi = movingObj1.radius + movingObj2.radius;
+    const totalDist = distance(movingObj1.x, movingObj1.y, movingObj2.x, movingObj2.y);
+    if(totalDist < totalRadi){
+        return true;
+    }else{
+        return false;
+    }
+}

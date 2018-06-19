@@ -41,8 +41,8 @@ class Particle{
         this.color = color;
         this.radians = Math.random() * 2*Math.PI;
         // this.radians = 0;
-        this.velocity = .5;
-        this.distanceFromCenter = Util.randomIntfromRange(80, 110);
+        this.velocity = .05;
+        this.distanceFromCenter = Util.randomIntfromRange(90, 110);
         this.lastMouse = {
             x: x, 
             y: y
@@ -52,28 +52,28 @@ class Particle{
             y: innerHeight / 2
         };
         // debugger;
-        addEventListener('mousedown', event => {
-            this.mouse.x = event.clientX,
-            this.mouse.y = event.clientY
-            addEventListener('mouseemove', this.onMouseMove);
-        })
+        // addEventListener('mousedown', event => {
+        //     this.mouse.x = event.clientX,
+        //     this.mouse.y = event.clientY
+        //     addEventListener('mouseemove', this.onMouseMove);
+        // })
 
-        this.onMouseMove = this.onMouseMove.bind(this);
+        // this.onMouseMove = this.onMouseMove.bind(this);
 
     }
 
     draw(c, lastPoint){
         c.beginPath();
-        // c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-        // c.fillStyle = this.color;
-        // c.fill();
+        c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+        c.fillStyle = this.color;
+        c.fill();
 
         //draw with lines for smoother effect
-        c.strokeStyle = this.color;
-        c.lineWidth = this.radius;
-        c.moveTo(lastPoint.x, lastPoint.y);
-        c.lineTo(this.x, this.y);
-        c.stroke();
+        // c.strokeStyle = this.color;
+        // c.lineWidth = this.radius;
+        // c.moveTo(lastPoint.x, lastPoint.y);
+        // c.lineTo(this.x, this.y);
+        // c.stroke();
         c.closePath();
     }
 
@@ -86,8 +86,8 @@ class Particle{
         this.radians += this.velocity;
 
         //create drag effect to decrease the center of the circle to 20% of the delta 
-        this.lastMouse.x += (this.mouse.x - this.lastMouse.x) * 0.05;
-        this.lastMouse.y += (this.mouse.y - this.lastMouse.y) * 0.05;
+        // this.lastMouse.x += (this.mouse.x - this.lastMouse.x) * 0.05;
+        // this.lastMouse.y += (this.mouse.y - this.lastMouse.y) * 0.05;
 
         // this.x = this.mouse.x + Math.cos(this.radians) * this.distanceFromCenter;
 
@@ -109,10 +109,10 @@ class Particle{
     //     })
     // }
 
-    onMouseMove(event){
-        this.mouse.x = event.clientX,
-        this.mouse.y = event.clientY
-    }
+    // onMouseMove(event){
+    //     this.mouse.x = event.clientX,
+    //     this.mouse.y = event.clientY
+    // }
 }
 
 export default Particle;

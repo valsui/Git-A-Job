@@ -12,7 +12,7 @@ class Game {
         this.bullets = [];
         this.player = [];
         // debugger;
-        this.addWheel()
+        this.addWheels(4);
         this.addPlayer(this.canvas.width/2, this.canvas.height);
     }
 
@@ -20,6 +20,7 @@ class Game {
         // debugger;
         if(object instanceof(Wheel)){
             this.wheel.push(object);
+            // debugger;
         }else if (object instanceof(Player)){
             // debugger;
             this.player.push(object);
@@ -28,13 +29,15 @@ class Game {
         }
     }
 
-    addWheel(){
-        const center = {
-            x: Util.randomIntfromRange(0, this.canvas.width),
-            y: Util.randomIntfromRange(0, this.canvas.height)
+    addWheels(num){
+        for(let i = 0; i < num; i++){
+            const center = {
+                x: Util.randomIntfromRange(0, this.canvas.width),
+                y: Util.randomIntfromRange(0, this.canvas.height)
+            }
+    
+            this.add(new Wheel(center.x, center.y, colors, this.canvas));
         }
-
-        this.add(new Wheel(center.x, center.y, colors, this.canvas));
 
         // for (let i = 0; i < 40; i++) {
         //     const radius = (Math.random() * 2) + 1;
@@ -52,7 +55,7 @@ class Game {
         // this.wheel.forEach( (particle) => {
         //     particle.update(c);
         // });
-        this.wheel[0].update(c);
+        this.wheel.forEach(wheel => wheel.update(c));
 
         this.player[0].update(c);
     }
