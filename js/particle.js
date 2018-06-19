@@ -50,11 +50,11 @@ class Particle{
             y: innerHeight / 2
         };
 
-        addEventListener('mousedown', event => {
-            this.mouse.x = event.clientX,
-                this.mouse.y = event.clientY
-            addEventListener('mouseemove', this.onMouseMove);
-        })
+        // addEventListener('mousedown', event => {
+        //     this.mouse.x = event.clientX,
+        //     this.mouse.y = event.clientY
+        //     addEventListener('mouseemove', this.onMouseMove);
+        // })
 
         this.onMouseMove = this.onMouseMove.bind(this);
 

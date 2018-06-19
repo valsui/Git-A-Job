@@ -35,16 +35,16 @@ class Game {
     }
 
     addPlayer(x,y){
-        this.add(new Player(x,y));
+        this.add(new Player(this.canvas));
         // debugger;
     }
 
     draw(c){
-        this.wheel.forEach( (particle) => {
-            particle.update(c);
-        });
+        // this.wheel.forEach( (particle) => {
+        //     particle.update(c);
+        // });
 
-        this.player[0].draw(c);
+        this.player[0].update(c);
     }
 }
 

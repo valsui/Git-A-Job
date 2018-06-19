@@ -23,7 +23,9 @@ export const distance = (x1, y1, x2, y2) => {
 //     y: player.y
 // }
 export const mouseangle = (mousePos, playerPos) => {
-    const delta_x = Math.abs(mousePos.x - playerPos.x);
-    const delta_y = Math.abs(mousePos.y - playerPos.y);
-    return Math.atan2(delta_y, delt_x);
+    const delta_x = (mousePos.x - playerPos.x);
+    const delta_y = (mousePos.y - playerPos.y);
+    const alpha = Math.atan2(delta_y, delta_x);
+    return alpha;
+    // if(alpha )
 }
