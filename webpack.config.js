@@ -1,9 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
-    entry: path.join(__dirname, './js/wheel.js'),
+    entry: path.join(__dirname, './js/main.js'),
     output: {
         filename: 'bundle.js',
         path: path.join(__dirname, './js')

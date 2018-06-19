@@ -4,10 +4,11 @@ const path = require('path')
 const fetch = require('node-fetch')
 const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
 
-app.use(express.static('js'))
+app.use(express.static('./js'))
+app.use(express.static('./css'));
 
 app.get('/', (request, res) => {
-    res.sendFile(path.join(__dirname, './js/index.html'))
+    res.sendFile(path.join(__dirname, './index.html'))
 })
 
 // create route to get single book by its isbn
