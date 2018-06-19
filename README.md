@@ -24,11 +24,11 @@ This project will be implemented with the following technologies:
 * Node.js backend
 * Express.js and Axios for external API calls
 
-`wheel.js` - handles target
-`util.js` - random utility functions
-`board.js` - rerenders DOM
-`player.js` - handles the shooter
-`app.js` - handles express fetch API calls
+* `wheel.js` - handles target
+* `util.js` - random utility functions
+* `board.js` - rerenders DOM
+* `player.js` - handles the shooter
+* `app.js` - handles express fetch API calls
 
 ## Timeline
 ### Weekend

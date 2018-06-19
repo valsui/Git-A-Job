@@ -30,17 +30,19 @@ import * as Util from './util';
 //create circle object
 class Particle{
 
-    constructor(x, y, radius, color) {
+    constructor(x, y, radius, color, center) {
         this.x = x;
         this.y = y;
         this.orig_x = x;
         this.orig_y = y;
+        this.center_x = center.x;
+        this.center_y = center.y;
         this.radius = radius;
         this.color = color;
         this.radians = Math.random() * 2*Math.PI;
         // this.radians = 0;
-        this.velocity = .5;
-        this.distanceFromCenter = Util.randomIntfromRange(50, 120);
+        this.velocity = 8;
+        this.distanceFromCenter = Util.randomIntfromRange(100, 110);
         this.lastMouse = {
             x: x, 
             y: y
@@ -49,12 +51,12 @@ class Particle{
             x: innerWidth / 2,
             y: innerHeight / 2
         };
-
-        // addEventListener('mousedown', event => {
-        //     this.mouse.x = event.clientX,
-        //     this.mouse.y = event.clientY
-        //     addEventListener('mouseemove', this.onMouseMove);
-        // })
+        // debugger;
+        addEventListener('mousedown', event => {
+            this.mouse.x = event.clientX,
+            this.mouse.y = event.clientY
+            addEventListener('mouseemove', this.onMouseMove);
+        })
 
         this.onMouseMove = this.onMouseMove.bind(this);
 
@@ -87,12 +89,13 @@ class Particle{
         this.lastMouse.x += (this.mouse.x - this.lastMouse.x) * 0.05;
         this.lastMouse.y += (this.mouse.y - this.lastMouse.y) * 0.05;
 
-        this.x = this.mouse.x + Math.cos(this.radians) * this.distanceFromCenter;
+        // this.x = this.mouse.x + Math.cos(this.radians) * this.distanceFromCenter;
 
-        this.y = this.mouse.y + Math.sin(this.radians) * this.distanceFromCenter;
-        // this.x = this.orig_x + Math.cos(this.radians) * this.distanceFromCenter;
+        // this.y = this.mouse.y + Math.sin(this.radians) * this.distanceFromCenter;
+        this.x = this.center_x + Math.cos(this.radians) * this.distanceFromCenter;
 
-        // this.y = this.orig_y + Math.sin(this.radians) * this.distanceFromCenter;
+        this.y = this.center_y + Math.sin(this.radians) * this.distanceFromCenter;
+
 
 
         this.draw(c,lastPoint);

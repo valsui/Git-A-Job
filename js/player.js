@@ -26,8 +26,8 @@ class Player{
             this.mousePos.x = event.clientX;
             this.mousePos.y = event.clientY;
             this.angle = Util.mouseangle(this.mousePos, this.playerPos);
-            console.log(this.angle * (180/Math.PI));
-            console.log('mousePos:', this.mousePos);
+            // console.log(this.angle * (180/Math.PI));
+            // console.log('mousePos:', this.mousePos);
             this.x = (this.radius + 100) * Math.cos(this.angle) + this.base_x;
             this.y = (this.radius + 100) * Math.sin(this.angle) + this.base_y;
             // console.log('this.x:', this.x);

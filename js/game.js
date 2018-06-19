@@ -1,6 +1,7 @@
 import * as Util from './util';
 import Particle from './particle';
 import Player from './player';
+import Wheel from './wheel';
 
 const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66'];
 
@@ -17,7 +18,7 @@ class Game {
 
     add(object){
         // debugger;
-        if(object instanceof(Particle)){
+        if(object instanceof(Wheel)){
             this.wheel.push(object);
         }else if (object instanceof(Player)){
             // debugger;
@@ -28,10 +29,18 @@ class Game {
     }
 
     addWheel(){
-        for (let i = 0; i < 400; i++) {
-            const radius = (Math.random() * 2) + 1;
-            this.add(new Particle(this.canvas.width / 2, this.canvas.height / 2, radius, Util.randomColor(colors)))
+        const center = {
+            x: Util.randomIntfromRange(0, this.canvas.width),
+            y: Util.randomIntfromRange(0, this.canvas.height)
         }
+
+        this.add(new Wheel(center.x, center.y, colors, this.canvas));
+
+        // for (let i = 0; i < 40; i++) {
+        //     const radius = (Math.random() * 2) + 1;
+        //     this.add(new Particle(this.canvas.width / 2, this.canvas.height / 2, radius, Util.randomColor(colors), center))
+        //     // this.add(new Particle(Util.randomIntfromRange(1, this.canvas.width), Util.randomIntfromRange(1, this.canvas.height), radius, Util.randomColor(colors)))
+        // }
     }
 
     addPlayer(x,y){
@@ -43,6 +52,7 @@ class Game {
         // this.wheel.forEach( (particle) => {
         //     particle.update(c);
         // });
+        this.wheel[0].update(c);
 
         this.player[0].update(c);
     }
