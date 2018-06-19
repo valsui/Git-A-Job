@@ -5,8 +5,10 @@ class Wheel {
     constructor(x, y, colors, canvas){
         this.x = x;
         this.y = y;
-        this.velocity_x = 6;
-        this.velocity_y = 10;
+        this.previous_x = x;
+        this.previous_y = y;
+        this.velocity_x = 10;
+        this.velocity_y = 15;
         this.canvas = canvas;
         this.colors = colors;
         this.particles = [];
@@ -17,7 +19,7 @@ class Wheel {
             x: this.x,
             y: this.y
         }
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 50; i++) {
             const radius = (Math.random() * 2) + 1;
             this.particles.push(new Particle(this.x, this.y, radius, Util.randomColor(this.colors), center))
         }
@@ -40,6 +42,17 @@ class Wheel {
             // this.velocity_y = -this.velocity_y
             this.y += this.velocity_y;
         }
+
+        this.particles = [];
+        // this.clearTrail(c);
+    }
+
+    clearTrail(c){
+        c.beginPath();
+        c.arc(this.previous_x, this.this.previous_y, 35, 0, Math.PI * 2, false);
+        c.fillStyle = 'white';
+        c.fill();
+        c.closePath();
     }
 }
 

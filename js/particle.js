@@ -41,8 +41,8 @@ class Particle{
         this.color = color;
         this.radians = Math.random() * 2*Math.PI;
         // this.radians = 0;
-        this.velocity = 8;
-        this.distanceFromCenter = Util.randomIntfromRange(100, 110);
+        this.velocity = .5;
+        this.distanceFromCenter = Util.randomIntfromRange(80, 110);
         this.lastMouse = {
             x: x, 
             y: y
@@ -64,16 +64,16 @@ class Particle{
 
     draw(c, lastPoint){
         c.beginPath();
-        c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-        c.fillStyle = this.color;
-        c.fill();
+        // c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+        // c.fillStyle = this.color;
+        // c.fill();
 
         //draw with lines for smoother effect
-        // c.strokeStyle = this.color;
-        // c.lineWidth = this.radius;
-        // c.moveTo(lastPoint.x, lastPoint.y);
-        // c.lineTo(this.x, this.y);
-        // c.stroke();
+        c.strokeStyle = this.color;
+        c.lineWidth = this.radius;
+        c.moveTo(lastPoint.x, lastPoint.y);
+        c.lineTo(this.x, this.y);
+        c.stroke();
         c.closePath();
     }
 
