@@ -94,11 +94,11 @@ class Game {
         if(this.wheel.length === 0){
             // debugger;
             return fetchJob().then(response => {
-                // const jobs = response.data;
-                // const randJob = jobs[Util.randomIntfromRange(0,jobs.length-1)];
+                const jobs = response.data;
+                const randJob = jobs[Util.randomIntfromRange(0,jobs.length-1)];
+                window.location.href = randJob.url;
                 // console.log(randJob.url);
                 // console.log(randJob.title);
-                // this.openWindow('www.google.com', 'google');
             });
         }
     }
