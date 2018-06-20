@@ -12,7 +12,7 @@ class Game {
         this.wheel = [];
         this.bullets = [];
         this.player = [];
-        this.addWheels(4);
+        this.addWheels(6);
         // this.addPlayer();
     }
 
@@ -40,13 +40,16 @@ class Game {
     }
 
     onBulletCollision(c){
-        this.wheel.forEach( wheel => {
+        let deleteWheelIdx;
+        let deleteBulletIdx;
+
+        this.wheel.forEach( (wheel, i) => {
             const wheelObj = {
                 x: wheel.x + wheel.velocity_x,
                 y: wheel.y + wheel.velocity_y,
                 radius: 110
             }
-            this.bullets.forEach( bullet => {
+            this.bullets.forEach( (bullet, j) => {
                 const bulletObj = {
                     x: bullet.x,
                     y: bullet.y,
@@ -54,14 +57,21 @@ class Game {
                 }
 
                 if(Util.checkCollision(wheelObj, bulletObj)){
-                    console.log('explode');
+                    // console.log('explode');
                     // debugger;
-                    console.log(wheel instanceof Wheel);
+                    // console.log(wheel instanceof Wheel);
                     wheel.explode(c)
-
+                    deleteWheelIdx = i;
+                    deleteBulletIdx = j;
                 }
             })
-        })
+        });
+
+        if(deleteWheelIdx !== undefined){
+            // debugger;
+            this.wheel.splice(deleteWheelIdx, 1);
+            this.bullets.splice(deleteBulletIdx, 1);
+        }
     }
 
     addPlayer(){

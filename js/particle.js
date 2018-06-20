@@ -47,6 +47,7 @@ class Particle{
             y: Math.random() * 10 - 5
         }
         this.distanceFromCenter = Util.randomIntfromRange(90, 110);
+        this.explode = false;
         this.lastMouse = {
             x: x, 
             y: y
@@ -114,6 +115,9 @@ class Particle{
         this.y = this.center_y + Math.sin(this.radians) * this.distanceFromCenter;
 
         this.draw(c);
+        // if(this.explode){
+        //     this.explodeParticle()
+        // }
     }
 
     // handleMouse(){
