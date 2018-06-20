@@ -30,7 +30,7 @@ import * as Util from './util';
 //create circle object
 class Particle{
 
-    constructor(x, y, radius, color, gravity, center) {
+    constructor(x, y, radius, color, gravity, center, explode) {
         this.x = x;
         this.y = y;
         this.orig_x = x;
@@ -43,8 +43,8 @@ class Particle{
         // this.radians = 0;
         this.gravity = gravity;
         this.velocity = {
-            x: Math.random() * 10 - 5,
-            y: Math.random() * 10 - 5
+            x: Math.random()*10 - 5,
+            y: Math.random()*10 - 5
         }
         this.distanceFromCenter = Util.randomIntfromRange(90, 110);
         this.explode = false;
@@ -56,6 +56,11 @@ class Particle{
             x: innerWidth / 2,
             y: innerHeight / 2
         };
+
+        this.explodingParticle = {
+            explode_x: this.x,
+            explode_y: this.y
+        }
         // debugger;
         // addEventListener('mousedown', event => {
         //     this.mouse.x = event.clientX,
@@ -88,19 +93,16 @@ class Particle{
         c.strokeStyle = this.color;
         c.lineWidth = this.radius;
         c.moveTo(lastPoint.x, lastPoint.y);
-        const explode_x = lastPoint.x * this.velocity.x * this.gravity;
-        const explode_y = lastPoint.y * this.velocity.y * this.gravity;
-        c.lineTo(explode_x,explode_y);
+        this.explodingParticle.explode_x = lastPoint.x * this.velocity.x;
+        this.explodingParticle.explode_y = lastPoint.y * this.velocity.y;
+        c.lineTo(this.explodingParticle.explode_x,this.explodingParticle.explode_y);
         c.stroke();
         c.closePath();
+        // debugger;
     }
 
     update(c){
         //Move points over time
-        // const lastPoint = {
-        //     x: this.x,
-        //     y: this.y
-        // }
         this.radians += this.gravity;
 
         //create drag effect to decrease the center of the circle to 20% of the delta 
@@ -108,16 +110,12 @@ class Particle{
         // this.lastMouse.y += (this.mouse.y - this.lastMouse.y) * 0.05;
 
         // this.x = this.mouse.x + Math.cos(this.radians) * this.distanceFromCenter;
-
         // this.y = this.mouse.y + Math.sin(this.radians) * this.distanceFromCenter;
-        this.x = this.center_x + Math.cos(this.radians) * this.distanceFromCenter;
 
+        this.x = this.center_x + Math.cos(this.radians) * this.distanceFromCenter;
         this.y = this.center_y + Math.sin(this.radians) * this.distanceFromCenter;
 
         this.draw(c);
-        // if(this.explode){
-        //     this.explodeParticle()
-        // }
     }
 
     // handleMouse(){

@@ -3,6 +3,7 @@ import Particle from './particle';
 import Player from './player';
 import Wheel from './wheel';
 import Bullet from './bullet';
+import { fetchJob } from './index';
 
 const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66'];
 
@@ -72,12 +73,34 @@ class Game {
             this.wheel.splice(deleteWheelIdx, 1);
             this.bullets.splice(deleteBulletIdx, 1);
         }
+
+        this.callJob();
     }
 
     addPlayer(){
         const player = new Player(this.canvas, this);
         this.add(player);
         return player;
+    }
+
+    openWindow(url, title){
+        debugger;
+        window.open(url, title);
+        // cancelAnimationFrame
+    }
+
+
+    callJob(){
+        if(this.wheel.length === 0){
+            // debugger;
+            return fetchJob().then(response => {
+                // const jobs = response.data;
+                // const randJob = jobs[Util.randomIntfromRange(0,jobs.length-1)];
+                // console.log(randJob.url);
+                // console.log(randJob.title);
+                // this.openWindow('www.google.com', 'google');
+            });
+        }
     }
 
     draw(c){

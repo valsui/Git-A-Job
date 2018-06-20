@@ -67,6 +67,8 @@ class Wheel {
                 x: particle.x,
                 y: particle.y
             };
+            // particle.explode = true;
+            // debugger;
             particle.explodeParticle(c, lastPoint);
         });
     }

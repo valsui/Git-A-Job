@@ -45,18 +45,35 @@ app.get('/', (request, res) => {
 //         return response.text();
 //     }).then((body) => {
 //         let results = JSON.parse(body)
+//         console.log(results);
 //         response.send(results);
 //     })
 // })
-// //search by location
+//search by location
 // app.get('/jobs/:location', (request, response) => {
+//     console.log('here');
 //     fetch(`https://jobs.github.com/positions.json?location=${request.params.location}&full_time=true`).then((response) => {
 //         return response.text();
 //     }).then((body) => {
 //         let results = JSON.parse(body)
+//         console.log(results);
 //         response.send(results);
+//     }).catch(err => {
+//         console.log(err);
 //     })
 // })
+app.get('/jobs', (request, response) => {
+    console.log('here');
+    fetch(`https://jobs.github.com/positions.json?location=sf&full_time=true`).then((response) => {
+        return response.text();
+    }).then((body) => {
+        let results = JSON.parse(body)
+        console.log(results);
+        response.send(results);
+    }).catch(err => {
+        console.log(err);
+    })
+})
 
 
 
