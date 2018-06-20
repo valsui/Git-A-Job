@@ -39,3 +39,14 @@ export const checkCollision = (movingObj1, movingObj2) => {
         return false;
     }
 }
+
+export const getDirection = (startPos, endPos) => {
+    const angle = mouseangle(endPos, startPos);
+    const dist = distance(startPos.x, startPos.y, endPos.x, endPos.y);
+    const direction = {
+        x: (startPos.x * Math.cos(angle))/(dist),
+        y: (startPos.y * Math.sin(angle))/(dist)
+    }
+    // debugger;
+    return direction;
+}

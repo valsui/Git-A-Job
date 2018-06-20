@@ -12,6 +12,7 @@ class Wheel {
         this.canvas = canvas;
         this.colors = colors;
         this.particles = [];
+        this.lastParticles = [];
     }
 
     update(c){
@@ -19,10 +20,17 @@ class Wheel {
             x: this.x,
             y: this.y
         }
+
+        const velocity = {
+            vel_x: 0.5,
+            vel_y: 0.5
+        }
         for (let i = 0; i < 50; i++) {
             const radius = (Math.random() * 5) + 4;
-            this.particles.push(new Particle(this.x, this.y, radius, Util.randomColor(this.colors), center))
+            this.particles.push(new Particle(this.x, this.y, radius, Util.randomColor(this.colors), 0.5, center))
         }
+
+        this.lastParticles = this.particles.slice(0);
         // debugger;
         this.particles.forEach((p) => {
             p.update(c);
@@ -47,10 +55,20 @@ class Wheel {
         }
 
         //check for collision with cannon
-
-
+        
         this.particles = [];
         // this.clearTrail(c);
+    }
+
+    explode(c){
+        // debugger;
+        this.lastParticles.forEach(particle => {
+            const lastPoint = {
+                x: particle.x,
+                y: particle.y
+            };
+            particle.explodeParticle(c, lastPoint);
+        });
     }
 
     avoidCanon(){
@@ -72,13 +90,6 @@ class Wheel {
         }
     }
 
-    // clearTrail(c){
-    //     c.beginPath();
-    //     c.arc(this.previous_x, this.this.previous_y, 35, 0, Math.PI * 2, false);
-    //     c.fillStyle = 'white';
-    //     c.fill();
-    //     c.closePath();
-    // }
 }
 
 export default Wheel;

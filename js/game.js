@@ -2,6 +2,7 @@ import * as Util from './util';
 import Particle from './particle';
 import Player from './player';
 import Wheel from './wheel';
+import Bullet from './bullet';
 
 const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66'];
 
@@ -11,21 +12,19 @@ class Game {
         this.wheel = [];
         this.bullets = [];
         this.player = [];
-        // debugger;
         this.addWheels(4);
-        this.addPlayer(this.canvas.width/2, this.canvas.height);
+        // this.addPlayer();
     }
 
     add(object){
-        // debugger;
         if(object instanceof(Wheel)){
             this.wheel.push(object);
-            // debugger;
         }else if (object instanceof(Player)){
             // debugger;
             this.player.push(object);
         }else{
             this.bullets.push(object);
+            // debugger;
         }
     }
 
@@ -38,26 +37,43 @@ class Game {
     
             this.add(new Wheel(center.x, center.y, colors, this.canvas));
         }
-
-        // for (let i = 0; i < 40; i++) {
-        //     const radius = (Math.random() * 2) + 1;
-        //     this.add(new Particle(this.canvas.width / 2, this.canvas.height / 2, radius, Util.randomColor(colors), center))
-        //     // this.add(new Particle(Util.randomIntfromRange(1, this.canvas.width), Util.randomIntfromRange(1, this.canvas.height), radius, Util.randomColor(colors)))
-        // }
     }
 
-    addPlayer(x,y){
-        this.add(new Player(this.canvas));
-        // debugger;
+    onBulletCollision(c){
+        this.wheel.forEach( wheel => {
+            const wheelObj = {
+                x: wheel.x + wheel.velocity_x,
+                y: wheel.y + wheel.velocity_y,
+                radius: 110
+            }
+            this.bullets.forEach( bullet => {
+                const bulletObj = {
+                    x: bullet.x,
+                    y: bullet.y,
+                    radius: Bullet.RADIUS
+                }
+
+                if(Util.checkCollision(wheelObj, bulletObj)){
+                    console.log('explode');
+                    // debugger;
+                    console.log(wheel instanceof Wheel);
+                    wheel.explode(c)
+
+                }
+            })
+        })
+    }
+
+    addPlayer(){
+        const player = new Player(this.canvas, this);
+        this.add(player);
+        return player;
     }
 
     draw(c){
-        // this.wheel.forEach( (particle) => {
-        //     particle.update(c);
-        // });
         this.wheel.forEach(wheel => wheel.update(c));
-
         this.player[0].update(c);
+        this.bullets.forEach(bullet => bullet.update(c));
     }
 }
 

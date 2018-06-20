@@ -30,7 +30,7 @@ import * as Util from './util';
 //create circle object
 class Particle{
 
-    constructor(x, y, radius, color, center) {
+    constructor(x, y, radius, color, gravity, center) {
         this.x = x;
         this.y = y;
         this.orig_x = x;
@@ -41,7 +41,11 @@ class Particle{
         this.color = color;
         this.radians = Math.random() * 2*Math.PI;
         // this.radians = 0;
-        this.velocity = .05;
+        this.gravity = gravity;
+        this.velocity = {
+            x: Math.random() * 10 - 5,
+            y: Math.random() * 10 - 5
+        }
         this.distanceFromCenter = Util.randomIntfromRange(90, 110);
         this.lastMouse = {
             x: x, 
@@ -62,7 +66,7 @@ class Particle{
 
     }
 
-    draw(c, lastPoint){
+    draw(c){
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
         c.fillStyle = this.color;
@@ -77,13 +81,26 @@ class Particle{
         c.closePath();
     }
 
+    explodeParticle(c, lastPoint){
+        // debugger;
+        c.beginPath();
+        c.strokeStyle = this.color;
+        c.lineWidth = this.radius;
+        c.moveTo(lastPoint.x, lastPoint.y);
+        const explode_x = lastPoint.x * this.velocity.x * this.gravity;
+        const explode_y = lastPoint.y * this.velocity.y * this.gravity;
+        c.lineTo(explode_x,explode_y);
+        c.stroke();
+        c.closePath();
+    }
+
     update(c){
         //Move points over time
-        const lastPoint = {
-            x: this.x,
-            y: this.y
-        }
-        this.radians += this.velocity;
+        // const lastPoint = {
+        //     x: this.x,
+        //     y: this.y
+        // }
+        this.radians += this.gravity;
 
         //create drag effect to decrease the center of the circle to 20% of the delta 
         // this.lastMouse.x += (this.mouse.x - this.lastMouse.x) * 0.05;
@@ -96,9 +113,7 @@ class Particle{
 
         this.y = this.center_y + Math.sin(this.radians) * this.distanceFromCenter;
 
-
-
-        this.draw(c,lastPoint);
+        this.draw(c);
     }
 
     // handleMouse(){
