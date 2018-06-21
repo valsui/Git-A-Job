@@ -9,7 +9,3 @@ export const fetchJob = function(){
             // })
             // .catch((err) => console.log(err));
 }
-
-// export const test = () => {
-//     console.log('uhhhhh');
-// };

@@ -30,7 +30,7 @@ import * as Util from './util';
 //create circle object
 class Particle{
 
-    constructor(x, y, radius, color, gravity, center, explode) {
+    constructor(x, y, radius, color, gravity, center) {
         this.x = x;
         this.y = y;
         this.orig_x = x;
@@ -40,18 +40,18 @@ class Particle{
         this.radius = radius;
         this.color = color;
         this.radians = Math.random() * 2*Math.PI;
-        // this.radians = 0;
         this.gravity = gravity;
         this.velocity = {
             x: Math.random()*10 - 5,
             y: Math.random()*10 - 5
         }
         this.distanceFromCenter = Util.randomIntfromRange(90, 110);
-        this.explode = false;
+
         this.lastMouse = {
             x: x, 
             y: y
         }
+
         this.mouse = {
             x: innerWidth / 2,
             y: innerHeight / 2
@@ -72,7 +72,7 @@ class Particle{
 
     }
 
-    draw(c){
+    draw(c, lastPoint){
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
         c.fillStyle = this.color;
@@ -105,6 +105,10 @@ class Particle{
         //Move points over time
         this.radians += this.gravity;
 
+        const lastPoint = {
+            x: this.x,
+            y: this.y
+        }
         //create drag effect to decrease the center of the circle to 20% of the delta 
         // this.lastMouse.x += (this.mouse.x - this.lastMouse.x) * 0.05;
         // this.lastMouse.y += (this.mouse.y - this.lastMouse.y) * 0.05;
@@ -115,7 +119,7 @@ class Particle{
         this.x = this.center_x + Math.cos(this.radians) * this.distanceFromCenter;
         this.y = this.center_y + Math.sin(this.radians) * this.distanceFromCenter;
 
-        this.draw(c);
+        this.draw(c, lastPoint);
     }
 
     // handleMouse(){
@@ -134,31 +138,4 @@ class Particle{
 
 export default Particle;
 
-
-//implementation
-// let particles;
-// const init = () => {
-//     particles = []
-//     // debugger;
-//     for (let i = 0; i < 400; i++) {
-//         const radius = (Math.random() * 2) + 1;
-//         particles.push( new Particle(canvas.width/2, canvas.height/2, radius, Util.randomColor(colors)))
-//     }
-//     console.log(particles);
-// }
-
-// const animate = () => {
-//     requestAnimationFrame(animate);
-//     //creating a new white rectangle on top of the circles with opacity to create trail affect
-//     c.fillStyle = 'rgba(255, 255, 255, 0.05)';
-//     c.fillRect(0,0,canvas.width, canvas.height);
-    
-//     c.fillText('', mouse.x, mouse.y)
-//     particles.forEach(particle => {
-//      particle.update();
-//     });
-// }
-
-// init();
-// animate();
 

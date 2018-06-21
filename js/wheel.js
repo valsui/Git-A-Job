@@ -7,8 +7,8 @@ class Wheel {
         this.y = y;
         this.previous_x = x;
         this.previous_y = y;
-        this.velocity_x = Util.randomIntfromRange(8,15);
-        this.velocity_y = Util.randomIntfromRange(8,15);
+        this.velocity_x = Util.randomIntfromRange(3,4);
+        this.velocity_y = Util.randomIntfromRange(2,3);
         this.canvas = canvas;
         this.colors = colors;
         this.particles = [];
@@ -21,17 +21,18 @@ class Wheel {
             y: this.y
         }
 
-        const velocity = {
-            vel_x: 0.5,
-            vel_y: 0.5
-        }
+        // const velocity = {
+        //     vel_x: 0.5,
+        //     vel_y: 0.5
+        // }
+
         for (let i = 0; i < 50; i++) {
             const radius = (Math.random() * 5) + 4;
-            this.particles.push(new Particle(this.x, this.y, radius, Util.randomColor(this.colors), 0.5, center))
+            this.particles.push(new Particle(this.x, this.y, radius, Util.randomColor(this.colors), 0.01 , center))
         }
 
         this.lastParticles = this.particles.slice(0);
-        // debugger;
+
         this.particles.forEach((p) => {
             p.update(c);
         })
@@ -56,7 +57,8 @@ class Wheel {
 
         //check for collision with cannon
         
-        this.particles = [];
+        this.particles.splice(0, this.particles.length/4);
+        // console.log(this.particles.length);
         // this.clearTrail(c);
     }
 

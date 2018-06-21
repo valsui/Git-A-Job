@@ -1,4 +1,5 @@
 import Game from './game';
+import Fractal from './fractal';
 
 class GameView {
     constructor(game, context, canvas){
@@ -33,7 +34,8 @@ class GameView {
         this.context.fillStyle = 'white';
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.game.onBulletCollision(this.context);
-
+        // const tree = new Fractal(this.canvas, this.context);
+        // tree.draw(this.context);
         this.game.draw(this.context);
     }
 }
