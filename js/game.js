@@ -99,6 +99,7 @@ class Game {
     }
 
     fillDivWithJobInfo(){
+        console.log(jobs);
         const job = jobs[Util.randomIntfromRange(0, jobs.length-1)];
         let jobTitle = document.getElementById('job-title');
         let jobCompany = document.getElementById('job-company');

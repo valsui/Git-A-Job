@@ -50,6 +50,13 @@ class Player{
                 self.fireBullet();
             }
         })
+        window.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('main-canvas').addEventListener('click', (k) => {
+                k.preventDefault();
+                self.fireBullet();
+            })
+        })
     }
 
     
