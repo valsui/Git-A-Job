@@ -21,10 +21,6 @@ class Wheel {
             y: this.y
         }
 
-        // const velocity = {
-        //     vel_x: 0.5,
-        //     vel_y: 0.5
-        // }
         const dist = [Util.randomIntfromRange(90, 110), Util.randomIntfromRange(40, 60), Util.randomIntfromRange(10, 30), Util.randomIntfromRange(70, 90)];
 
         for (let i = 0; i < 100; i++) {

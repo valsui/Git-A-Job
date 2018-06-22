@@ -73,8 +73,9 @@ class Game {
             audio.play();
             // debugger;
             this.wheel.splice(deleteWheelIdx, 1);
-            // this.bullets.splice(deleteBulletIdx, 1);
-            this.bullets = [];
+            this.bullets.splice(deleteBulletIdx, 1);
+            // this.bullets = [];
+            // console.log(this);
             // debugger;
         }
         this.callJob();
@@ -102,7 +103,7 @@ class Game {
     }
 
     fillDivWithJobInfo(){
-        console.log(jobs);
+        // console.log(jobs);
         const job = jobs[Util.randomIntfromRange(0, jobs.length-1)];
         let jobTitle = document.getElementById('job-title');
         let jobCompany = document.getElementById('job-company');
