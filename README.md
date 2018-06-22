@@ -1,54 +1,25 @@
 # Git a Job
 
 ## Background and Overview
-This project is meant to be a small interactive game to make the process of applying for jobs a little more entertaining. Inspired by theme of asteroids, this project will be a game in which the player needs to mark a moving target. The twist is that the target will trigger an ajax call to Github's job's api and will open up a tab to a job application for a near by developer position. 
+This project is meant to be a small interactive game to make the process of applying for jobs a little more entertaining. Inspired by theme of bubble shooter, this project will be a game in which the player needs to shoot moving targets. The twist is that the target will trigger an api call to Github's job's api and will open up a tab to a job application for a near by developer position. 
 
-## Functionality and MVP
-- [ ] Users will be able to aim the trigger which is positioned at the bottom of the page on mouseover
-- [ ] Users will be able to shoot on space keypress
-- [ ] Users will be able to reset
-- [ ] Users will be linked to a new job posting
-In addition:
-- [ ] An about section on how to play
+The technologies used for this game were: node.js, Express.js, javascript.
+The graphics were drawn and animated using HTML5 Canvas.  
 
-## Wireframe
-This will be a single page app
+It also features a fractal tree for fun.
+## How to Play
+The game begins with a button click. The player aims with their at the moving objects with a canon. They can click or use the space bar to fire. Once all the moving objects are elimated, the player is rewarded with a job posting in the Bay Area.
 
-![GitAJob](https://i.imgur.com/iTBITzU.png)
+## Features
+* Canon aiming with mouse movement
+* Click to shoot or spacebar to shoot bubbles
+* Animated moving objects that rotated and bounced 
+* A Fractal tree
+* Current job postings
+* Sound Effects for fun
 
-## Architecture and Technology
-This project will be implemented with the following technologies:
+Although a rather simple concept, this game relied heavily the use of polar coordinates and trigonometry for the animations. Moreover, the Github Jobs API call required a server in order to remedy CORS errors. I faced many challenges with Canvas, particularly with requestAnimationFrame rendering too quickly.
 
-* Vanilla JavaScript for overall structure and game logic
-* HTML5 Canvas for DOM manipulation and rendering
-* Node.js backend
-* Express.js and Axios for external API calls
+With time, I would have liked to render the explosions as confetti. I also would have really liked to animate my fractal tree. However, I believe that could be a separate project.
 
-* `wheel.js` - handles target
-* `util.js` - random utility functions
-* `board.js` - rerenders DOM
-* `player.js` - handles the shooter
-* `app.js` - handles express fetch API calls
-
-## Timeline
-### Weekend
-* successfully made API call to Github's jobs API
-* rendered spinning circle
-
-### Day 1
-- [ ] have target moving
-- [ ] implement the player class
-
-### Day 2
-- [ ] continue player class
-- [ ] collision detection
-
-### Day 3
-- [ ] work on reseting 
-- [ ] about modal
-
-### Day 4
-- [ ] style and fix many inevitable bugs
-
-
-
+![GitAJob](https://i.imgur.com/D0dUqck.png)
