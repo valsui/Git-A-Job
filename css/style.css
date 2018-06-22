@@ -123,9 +123,20 @@ button{
     background-color: #FFB266;
 }
 
-button:hover {
+button:hover{
     box-shadow: 1px 1px 3px 3px #0000ff21;
 }
+
+/* #job-url{
+    width: 200px;
+    height: 50px;
+    border: 1px solid lightblue;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    font: inherit;
+    background-color: #FFB266;
+} */
 
 h1{
     font-size: 24px;

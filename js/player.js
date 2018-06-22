@@ -51,8 +51,12 @@ class Player{
             }
         })
         window.addEventListener('click', (e) => {
-            e.preventDefault();
+            // e.preventDefault();
             document.getElementById('main-canvas').addEventListener('click', (k) => {
+                k.preventDefault();
+                self.fireBullet();
+            })
+            document.getElementById('treediv').addEventListener('click', (k) => {
                 k.preventDefault();
                 self.fireBullet();
             })

@@ -17,7 +17,7 @@ class Game {
         this.bullets = [];
         this.player = [];
         this.won = false;
-        this.addWheels(15);
+        this.addWheels(10);
     }
 
     add(object){
@@ -69,10 +69,13 @@ class Game {
         if(deleteWheelIdx !== undefined){
             let audio = new Audio();
             audio.src = 'pop.mp3';
-            audio.volume = 0.4;
+            audio.volume = 0.5;
             audio.play();
+            // debugger;
             this.wheel.splice(deleteWheelIdx, 1);
-            this.bullets.splice(deleteBulletIdx, 1);
+            // this.bullets.splice(deleteBulletIdx, 1);
+            this.bullets = [];
+            // debugger;
         }
         this.callJob();
     }

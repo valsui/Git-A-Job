@@ -44,8 +44,7 @@ class GameView {
                 requestAnimationFrame(this.animate.bind(this));
             }, 50)
         }else{
-            // const tree = new Fractal(this.canvas, this.context);
-            // tree.draw(this.context);
+            
         }
         this.game.onBulletCollision(this.context);
         this.game.draw(this.context);
