@@ -1,11 +1,6 @@
 
 class Fractal {
     constructor(){
-        // this.x = x,
-        // this.y = y,
-        // this.canvas = canvas;
-        // this.context = context;
-        // debugger;
     }
 
     drawLine(c,x1,y1,x2,y2){

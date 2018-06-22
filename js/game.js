@@ -17,7 +17,7 @@ class Game {
         this.bullets = [];
         this.player = [];
         this.won = false;
-        this.addWheels(10);
+        this.addWheels(15);
     }
 
     add(object){
@@ -67,7 +67,10 @@ class Game {
         });
 
         if(deleteWheelIdx !== undefined){
-            // debugger;
+            let audio = new Audio();
+            audio.src = 'pop.mp3';
+            audio.volume = 0.4;
+            audio.play();
             this.wheel.splice(deleteWheelIdx, 1);
             this.bullets.splice(deleteBulletIdx, 1);
         }
@@ -82,33 +85,27 @@ class Game {
 
     callJob(){
         if(this.wheel.length === 0){
-            // return fetchJob().then(response => {
-            //     const jobs = response.data;
-            //     const randJob = jobs[Util.randomIntfromRange(0,jobs.length-1)];
-            //     window.location.href = randJob.url;
-            // });
             this.won = true;
             let endModal = document.querySelector('.end-modal');
             this.fillDivWithJobInfo();
-            // debugger;
             setTimeout(() => {
+                let audio = new Audio();
+                audio.src = 'KidsCheering.mp3';
+                audio.volume = 0.7;
+                audio.play();
                 endModal.style.display = 'flex';
             }, 100);
         }
     }
 
     fillDivWithJobInfo(){
-        // console.log(jobs);
         const job = jobs[Util.randomIntfromRange(0, jobs.length-1)];
-        // console.log(job)
         let jobTitle = document.getElementById('job-title');
-        // let jobType = document.getElementById('job-type');
         let jobCompany = document.getElementById('job-company');
         let jobLocation = document.getElementById('job-location');
         let jobURL = document.getElementById('job-url');
 
         jobTitle.innerText =  job.title;
-        // jobType.innerText= job.Type;
         jobLocation.innerText= job.location
         jobCompany.innerText= job.company;
         jobURL.href = job.url;

@@ -6,12 +6,10 @@ class Bullet{
         this.y = y,
         this.direction = direction;
         this.color = color;
-        // debugger;
     }
 
     draw(c){
         let gradient = c.createRadialGradient(this.x, this.y, 30, this.x, this.y, 3);
-        // debugger;
         gradient.addColorStop(0, this.color);
         gradient.addColorStop(1, 'white');
         c.fillStyle = gradient;

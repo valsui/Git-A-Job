@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.height = innerHeight;
     })
 
+    //initilize tree canvas 
     let treeCanvas = document.createElement("canvas");
 
     let tempCtx = treeCanvas.getContext('2d');
@@ -25,17 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.canvas.width = 500;
     tempCtx.canvas.height = 400;
 
-    // addEventListener('resize', () => {
-    //     tempCtx.canvas.width = 400;
-    //     tempCtx.canvas.height = 400;
-    // })
-
-    // debugger;
-
     document.getElementById('start').addEventListener('click', (e) => {
         e.preventDefault();
         let startModal = document.querySelector('.start-modal');
         startModal.style.display = 'none';
+        view.start();
     });
 
     document.getElementById('close-start').addEventListener('click', (e) => {
@@ -45,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
+    //reload window if user tries to exit out of game
     document.getElementById('close-end').addEventListener('click', (e) => {
         e.preventDefault();
-        let jobModal = document.querySelector('.end-modal');
-        jobModal.style.display = 'none';
+        window.location.reload();
 
     });
     
@@ -72,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tree = new Fractal();
     tree.draw(tempCtx);
 
-    document.getElementById('start').addEventListener('click', (e) => {
-        e.preventDefault();
-        view.start();
-    })
+    // document.getElementById('start').addEventListener('click', (e) => {
+    //     e.preventDefault();
+        
+    // })
 })

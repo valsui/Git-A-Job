@@ -57,21 +57,15 @@ class Wheel {
             this.y += this.velocity_y;
         }
 
-        //check for collision with cannon
-        
-        // this.particles.splice(0, this.particles.length/4);
         this.particles = [];
     }
 
     explode(c){
-        // debugger;
         this.lastParticles.forEach(particle => {
             const lastPoint = {
                 x: particle.x,
                 y: particle.y
             };
-            // particle.explode = true;
-            // debugger;
             particle.explodeParticle(c, lastPoint);
         });
     }

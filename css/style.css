@@ -150,3 +150,17 @@ h1{
     position: absolute;
 }
 
+.simple{
+    margin-top: 10px;
+    /* text-align: center; */
+    color: blue;
+    font-size: 18px;
+}
+
+.space-bar{
+    transform: rotate(-90deg);
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: bold;
+}
+

@@ -65,7 +65,7 @@ class Particle{
             explode_x: this.x,
             explode_y: this.y
         }
-        // debugger;
+
         // addEventListener('mousedown', event => {
         //     this.mouse.x = event.clientX,
         //     this.mouse.y = event.clientY
@@ -92,7 +92,6 @@ class Particle{
     }
 
     explodeParticle(c, lastPoint){
-        // debugger;
         c.beginPath();
         c.strokeStyle = this.color;
         c.lineWidth = this.radius;
@@ -102,7 +101,6 @@ class Particle{
         c.lineTo(this.explodingParticle.explode_x,this.explodingParticle.explode_y);
         c.stroke();
         c.closePath();
-        // debugger;
     }
 
     update(c){

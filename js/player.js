@@ -5,7 +5,6 @@ import * as Util from './util';
 const bulletColors = ['#FF9933', '#33FF99', '#FF3399', '#3399FF', '#B266FF','#FFFF00'];
 class Player{
     constructor(canvas, game){
-        // debugger;
         this.base_x = canvas.width/2;
         this.base_y = canvas.height;
         this.radius = 75;
