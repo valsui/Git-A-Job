@@ -5,40 +5,58 @@
     <meta charset="utf-8">
     <title>Surprise</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Bubblegum+Sans|Gloria+Hallelujah|Unica+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
 </head>
 
 <body>
     <!-- <main id='main'></main> -->
         <div class="start-modal">
             <div class="start-modal-content">
-                <div id='close'>+</div>
-                <h2>Welcome To My Game!</h2>
+                <div id='close-start'>+</div>
+                <h2>Welcome!</h2>
+                <h3>Rules</h3>
+                <ol class='Rules'>
+                    <div>Shoot the all moving targets with the canon and win a special prize!</div>
+                </ol>
                 <h3>Instructions</h3>
                 <ol class="Instructions">
                     <li>Use mouse or trackpad to control the canon</li>
-                    <div>Note: the closer to the canon, the faster the balls</div>
                     <li>Use the space bar to fire</li>
                     <li>Fire all the targets and get your prize</li>
                 </ol>
-                <button id="start">Let's Start!</button>
-            </div>
-
-            <div class="end-modal-content">
-                <div id='close'>+</div>
-                <a id='git-url' href="">
-                    <button id="apply">Apply Here</button>
-                </a>
+                <button id="start">Let's Git Started!</button>
+                <div class='info'>If at anytime you forget these instructions, click on the tab on the bottom left corner.</div>
             </div>
         </div>
         
         <div id="instructions">
+            <i class="fas fa-info"></i>
+        </div>
 
-            <div>Instructions</div>
-            <div>^</div>     
+        <div class='end-modal'>
+            <div id="end-modal-content">
+                <div id='close-end'>+</div>
+                <h1 class='congrats'>Congratulations! Now go apply for this job</h1>
+                <h3>Title</h3>
+                <div id='job-title'></div>
+                <h3>Company</h3>
+                <div id='job-company'></div>
+                <!-- <div id='job-type'></div> -->
+                <h3>Location</h3>
+                <div id='job-location'></div>
+                <a id='job-url' href="">
+                    <button id="apply">Apply Here</button>
+                </a>
+            </div>
         </div>
 
 
-    <canvas></canvas>
+    <canvas id = 'main-canvas'></canvas>
+    <div id="treediv-holder">
+        <div id='treediv'></div>
+    </div>
 
     <script type="text/javascript" src="bundle.js"></script>
 

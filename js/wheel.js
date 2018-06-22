@@ -7,8 +7,8 @@ class Wheel {
         this.y = y;
         this.previous_x = x;
         this.previous_y = y;
-        this.velocity_x = Util.randomIntfromRange(3,4);
-        this.velocity_y = Util.randomIntfromRange(2,3);
+        this.velocity_x = Util.randomIntfromRange(10,30);
+        this.velocity_y = Util.randomIntfromRange(10,30);
         this.canvas = canvas;
         this.colors = colors;
         this.particles = [];
@@ -25,10 +25,12 @@ class Wheel {
         //     vel_x: 0.5,
         //     vel_y: 0.5
         // }
+        const dist = [Util.randomIntfromRange(90, 110), Util.randomIntfromRange(40, 60), Util.randomIntfromRange(10, 30), Util.randomIntfromRange(70, 90)];
 
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 100; i++) {
             const radius = (Math.random() * 5) + 4;
-            this.particles.push(new Particle(this.x, this.y, radius, Util.randomColor(this.colors), 0.01 , center))
+            const wheelRadius = dist[Util.randomIntfromRange(0, dist.length - 1)];
+            this.particles.push(new Particle(this.x, this.y, radius, Util.randomColor(this.colors), 0.01 , center, wheelRadius))
         }
 
         this.lastParticles = this.particles.slice(0);
@@ -57,9 +59,8 @@ class Wheel {
 
         //check for collision with cannon
         
-        this.particles.splice(0, this.particles.length/4);
-        // console.log(this.particles.length);
-        // this.clearTrail(c);
+        // this.particles.splice(0, this.particles.length/4);
+        this.particles = [];
     }
 
     explode(c){

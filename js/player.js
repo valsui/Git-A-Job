@@ -2,6 +2,7 @@ import Particle from './particle';
 import Bullet from './bullet';
 import * as Util from './util';
 
+const bulletColors = ['#FF9933', '#33FF99', '#FF3399', '#3399FF', '#B266FF','#FFFF00'];
 class Player{
     constructor(canvas, game){
         // debugger;
@@ -38,8 +39,8 @@ class Player{
             x: this.x,
             y: this.y
         }
-        const direction = Util.getDirection(this.playerPos, this.mousePos)
-        const bullet = new Bullet(this.x, this.y,'black', direction);
+        const direction = Util.getDirection(this.playerPos, currentPos)
+        const bullet = new Bullet(this.x, this.y, Util.randomColor(bulletColors), direction);
         this.game.add(bullet);
     }
 
@@ -58,28 +59,19 @@ class Player{
         c.beginPath();
         c.arc(this.base_x, this.base_y, this.radius, 0, 2*Math.PI, true);
         c.stroke();
-        c.fillStyle = 'grey';
+        c.fillStyle = '#CCE5FF';
         c.fill()
 
-        // c.setTransform(1, 0, 0, 1, 0, 0);
-        // c.translate(this.base_x, this.base_y);
-        // c.rotate(this.angle);
+        // let gradient1 = c.createRadialGradient(this.base_x, this.base_y, this.radius, this.base_x, this.base_y, 5);
+        // gradient1.addColorStop(1, '#CCE5FF');
+        // gradient1.addColorStop(0, '#99CCFF');
+        // c.fillStyle = gradient;
         c.beginPath()
         c.lineWidth='30';
-        c.strokeStyle = 'grey';
-        // c.fillRect(this.x, this.y, 10, this.radius);
-        // c.rect(-this.x, this.y, 10, this.radius);
+        c.strokeStyle = '#99CCFF';
         c.moveTo(this.base_x, this.base_y);
-        // console.log('base_x:', this.base_x);
-        // console.log('base_y:', this.base_y);
         c.lineTo(this.x, this.y);
-        // console.log('x:', this.x)
-        // console.log('y:', this.y)
-        // debugger;
-        // c.fillRect();
         c.stroke();
-        // c.restore();
-        // c.rect()
     }
 
     update(c) {

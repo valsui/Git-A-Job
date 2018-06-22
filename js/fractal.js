@@ -1,10 +1,10 @@
 
 class Fractal {
-    constructor(canvas, context){
+    constructor(){
         // this.x = x,
         // this.y = y,
-        this.canvas = canvas;
-        this.context = context;
+        // this.canvas = canvas;
+        // this.context = context;
         // debugger;
     }
 
@@ -16,26 +16,26 @@ class Fractal {
         c.lineWidth = 5;
         c.stroke(); 
     }
-
+    //this is a turing machine that builds a fractal tree
     branch(c, branchLength){
         c.beginPath();
         this.drawLine(c,0,0,0,-branchLength);
         c.translate(0, -branchLength);
-        if(branchLength > 4){
+        if(branchLength > 10){
             c.save();
             c.rotate(Math.PI/4);
-            this.branch(c, branchLength * 0.67)
+            this.branch(c, branchLength * 0.75)
             c.restore();
             c.save();
             c.rotate(-Math.PI/4);
-            this.branch(c, branchLength * 0.67)
+            this.branch(c, branchLength * 0.75)
             c.restore();
         }
     }
     
-    draw(c){
-        c.translate(this.canvas.width/2, this.canvas.height/2)
-        this.branch(c, this.canvas.height/3);
+    draw(tempCtx){
+        tempCtx.translate(tempCtx.canvas.width/2, tempCtx.canvas.height)
+        this.branch(tempCtx, tempCtx.canvas.height/4);
         // c.rotate(Math.PI/2);
     }
 }

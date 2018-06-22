@@ -27,7 +27,6 @@ export const mouseangle = (mousePos, playerPos) => {
     const delta_y = (mousePos.y - playerPos.y);
     const alpha = Math.atan2(delta_y, delta_x);
     return alpha;
-    // if(alpha )
 }
 
 export const checkCollision = (movingObj1, movingObj2) => {
@@ -47,6 +46,6 @@ export const getDirection = (startPos, endPos) => {
         x: (startPos.x * Math.cos(angle))/(dist),
         y: (startPos.y * Math.sin(angle))/(dist)
     }
-    // debugger;
     return direction;
 }
+

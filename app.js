@@ -63,12 +63,12 @@ app.get('/', (request, res) => {
 //     })
 // })
 app.get('/jobs', (request, response) => {
-    console.log('here');
-    fetch(`https://jobs.github.com/positions.json?location=sf&full_time=true`).then((response) => {
+    // console.log('here');
+    fetch(`https://jobs.github.com/positions.json?description=javascript&location=sf&full_time=true`).then((response) => {
         return response.text();
     }).then((body) => {
         let results = JSON.parse(body)
-        console.log(results);
+        // console.log(results);
         response.send(results);
     }).catch(err => {
         console.log(err);

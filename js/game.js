@@ -4,36 +4,37 @@ import Player from './player';
 import Wheel from './wheel';
 import Bullet from './bullet';
 import { fetchJob } from './index';
+import { jobs } from './main';
+import Fractal from './fractal';
 
 const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66'];
 
 class Game {
-    constructor(canvas){
+    constructor(canvas, context){
         this.canvas = canvas;
+        this.context = context;
         this.wheel = [];
         this.bullets = [];
         this.player = [];
-        this.addWheels(6);
-        // this.addPlayer();
+        this.won = false;
+        this.addWheels(10);
     }
 
     add(object){
         if(object instanceof(Wheel)){
             this.wheel.push(object);
         }else if (object instanceof(Player)){
-            // debugger;
             this.player.push(object);
         }else{
             this.bullets.push(object);
-            // debugger;
         }
     }
 
     addWheels(num){
         for(let i = 0; i < num; i++){
             const center = {
-                x: Util.randomIntfromRange(0, this.canvas.width),
-                y: Util.randomIntfromRange(0, this.canvas.height)
+                x: Util.randomIntfromRange(0, this.canvas.width - 185),
+                y: Util.randomIntfromRange(0, this.canvas.height - 185)
             }
     
             this.add(new Wheel(center.x, center.y, colors, this.canvas));
@@ -58,9 +59,6 @@ class Game {
                 }
 
                 if(Util.checkCollision(wheelObj, bulletObj)){
-                    // console.log('explode');
-                    // debugger;
-                    // console.log(wheel instanceof Wheel);
                     wheel.explode(c)
                     deleteWheelIdx = i;
                     deleteBulletIdx = j;
@@ -73,7 +71,6 @@ class Game {
             this.wheel.splice(deleteWheelIdx, 1);
             this.bullets.splice(deleteBulletIdx, 1);
         }
-
         this.callJob();
     }
 
@@ -85,12 +82,36 @@ class Game {
 
     callJob(){
         if(this.wheel.length === 0){
-            return fetchJob().then(response => {
-                const jobs = response.data;
-                const randJob = jobs[Util.randomIntfromRange(0,jobs.length-1)];
-                window.location.href = randJob.url;
-            });
+            // return fetchJob().then(response => {
+            //     const jobs = response.data;
+            //     const randJob = jobs[Util.randomIntfromRange(0,jobs.length-1)];
+            //     window.location.href = randJob.url;
+            // });
+            this.won = true;
+            let endModal = document.querySelector('.end-modal');
+            this.fillDivWithJobInfo();
+            // debugger;
+            setTimeout(() => {
+                endModal.style.display = 'flex';
+            }, 100);
         }
+    }
+
+    fillDivWithJobInfo(){
+        // console.log(jobs);
+        const job = jobs[Util.randomIntfromRange(0, jobs.length-1)];
+        // console.log(job)
+        let jobTitle = document.getElementById('job-title');
+        // let jobType = document.getElementById('job-type');
+        let jobCompany = document.getElementById('job-company');
+        let jobLocation = document.getElementById('job-location');
+        let jobURL = document.getElementById('job-url');
+
+        jobTitle.innerText =  job.title;
+        // jobType.innerText= job.Type;
+        jobLocation.innerText= job.location
+        jobCompany.innerText= job.company;
+        jobURL.href = job.url;
     }
 
     draw(c){

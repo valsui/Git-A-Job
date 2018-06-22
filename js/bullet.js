@@ -5,12 +5,16 @@ class Bullet{
         this.x = x,
         this.y = y,
         this.direction = direction;
-        this.color;
+        this.color = color;
         // debugger;
     }
 
     draw(c){
-        c.fillStyle = this.color;
+        let gradient = c.createRadialGradient(this.x, this.y, 30, this.x, this.y, 3);
+        // debugger;
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, 'white');
+        c.fillStyle = gradient;
 
         c.beginPath();
         c.arc(this.x, this.y, Bullet.RADIUS, 0, 2*Math.PI, true);
@@ -27,6 +31,6 @@ class Bullet{
 }
 
 Bullet.RADIUS = 30;
-Bullet.SPEED = 1;
+Bullet.SPEED = 3;
 
 export default Bullet;

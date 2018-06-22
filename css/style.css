@@ -1,10 +1,19 @@
 body{
-    background: pink;
+    background: white;
     margin: 0;
+    font-family: 'Bubblegum Sans', cursive;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Unica One', cursive;
+    font-family: 'Advent Pro', sans-serif;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 canvas{
-    display: block;
+    /* display: block; */
+    position: absolute;
 }
 
 .start-modal{
@@ -16,6 +25,7 @@ canvas{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
     /* display: none; */
 }
 
@@ -25,14 +35,30 @@ canvas{
     justify-content: flex-start;
     align-items: center;
     width: 300px;
-    height: 500px;
+    /* height: 500px; */
+    height: auto;
     background-color: white;
     border-radius: 4px;
     padding: 20px;
     position: relative;
+    /* display: none; */
 }
 
-#close{
+.info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+}
+#close-start{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 32px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+#close-end{
     position: absolute;
     top: 0;
     right: 14px;
@@ -44,15 +70,36 @@ canvas{
 #instructions{
     position: absolute;
     bottom: 0;
-    width: 150px;
-    height: 2%;
-    border: 1px solid black;
+    width: 50px;
+    height: 2.5%;
     border-radius: 5px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    /* border: 1px solid grey; */
+
 }
 
-#end-modal{
+.fa-info{
+    color: #004C99;
+}
+
+#end-modal-content{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: auto;
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    /* display:none; */
+}
+
+.end-modal{
     width: 100%;
     height: 100%;
     background-color:rgba(0,0,0,.7);
@@ -61,4 +108,45 @@ canvas{
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
+    z-index: 10;
 }
+
+button{
+    width: 200px;
+    height: 50px;
+    border: 1px solid lightblue;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    font: inherit;
+    background-color: #FFB266;
+}
+
+button:hover {
+    box-shadow: 1px 1px 3px 3px #0000ff21;
+}
+
+h1{
+    font-size: 24px;
+}
+
+#job-url{
+    margin-top: 20px;
+}
+
+#tree-div-holder {
+    position: relative;
+}
+
+#treediv{
+    bottom: 0;
+    right: 0;
+    /* top: 100%;
+    left: 100%; */
+    opacity: .2;
+    width: 500px;
+    height: 400px;
+    position: absolute;
+}
+

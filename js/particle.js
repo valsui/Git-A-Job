@@ -30,7 +30,7 @@ import * as Util from './util';
 //create circle object
 class Particle{
 
-    constructor(x, y, radius, color, gravity, center) {
+    constructor(x, y, radius, color, gravity, center, dist) {
         this.x = x;
         this.y = y;
         this.orig_x = x;
@@ -45,7 +45,11 @@ class Particle{
             x: Math.random()*10 - 5,
             y: Math.random()*10 - 5
         }
-        this.distanceFromCenter = Util.randomIntfromRange(90, 110);
+
+        this.distanceFromCenter = dist;
+
+        // const dist = [Util.randomIntfromRange(90, 110), Util.randomIntfromRange(40, 60), Util.randomIntfromRange(10, 30), Util.randomIntfromRange(70, 90)];
+        // this.distanceFromCenter = dist[Util.randomIntfromRange(0, dist.length -1)];
 
         this.lastMouse = {
             x: x, 
